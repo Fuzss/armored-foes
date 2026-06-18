@@ -6,10 +6,7 @@ import fuzs.armoredfoes.common.init.ModLootTables;
 import fuzs.armoredfoes.common.init.ModRegistry;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntitySpawnReason;
-import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.storage.loot.LootTable;
 import org.jspecify.annotations.Nullable;
@@ -23,7 +20,8 @@ public class SpawnEquipmentHandler {
             // We cannot determine here when summoned via command if any specific nbt was specified which we should not interfere with (like purposefully setting empty equipment slots).
             // In that case, though, the spawn reason will be null, so we can filter that out like so.
             if (entitySpawnReason != null) {
-                ResourceKey<LootTable> resourceKey = ModLootTables.createEntityEquipmentTable(entity.getType());
+                ResourceKey<EntityType<?>> entityType = entity.typeHolder().unwrapKey().orElseThrow();
+                ResourceKey<LootTable> resourceKey = ModLootTables.createEntityEquipmentTable(entityType);
                 LootTable lootTable = serverLevel.getServer().reloadableRegistries().getLootTable(resourceKey);
                 if (lootTable != LootTable.EMPTY && prepareEquipmentSlots(mob)) {
                     mob.equip(resourceKey, Collections.emptyMap());

@@ -9,12 +9,14 @@ import fuzs.armoredfoes.common.world.level.storage.loot.predicates.EffectiveDiff
 import fuzs.armoredfoes.common.world.level.storage.loot.predicates.RaidCheck;
 import fuzs.puzzleslib.common.api.data.v2.AbstractLootProvider;
 import fuzs.puzzleslib.common.api.data.v2.core.DataProviderContext;
-import net.minecraft.advancements.criterion.EntityFlagsPredicate;
-import net.minecraft.advancements.criterion.EntityPredicate;
+import net.minecraft.advancements.predicates.entity.EntityFlagsPredicate;
+import net.minecraft.advancements.predicates.entity.EntityPredicate;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.EntityTypeIds;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
@@ -84,18 +86,18 @@ public class ModEquipmentLootProvider extends AbstractLootProvider.Simple {
                         Items.DIAMOND_CHESTPLATE,
                         Items.DIAMOND_LEGGINGS,
                         Items.DIAMOND_BOOTS));
-        this.addNaturalArmorTable(EntityType.WITHER_SKELETON);
-        this.addNaturalArmorTable(EntityType.DROWNED);
-        this.addGoldenArmorTable(EntityType.PIGLIN);
-        this.addGoldenArmorTable(EntityType.PIGLIN_BRUTE);
-        this.addGoldenArmorTable(EntityType.ZOMBIFIED_PIGLIN);
-        this.addRaiderArmorTable(EntityType.VINDICATOR);
-        this.addRaiderArmorTable(EntityType.EVOKER);
-        this.addRaiderArmorTable(EntityType.ILLUSIONER);
-        this.addRaiderArmorTable(EntityType.PILLAGER);
+        this.addNaturalArmorTable(EntityTypeIds.WITHER_SKELETON);
+        this.addNaturalArmorTable(EntityTypeIds.DROWNED);
+        this.addGoldenArmorTable(EntityTypeIds.PIGLIN);
+        this.addGoldenArmorTable(EntityTypeIds.PIGLIN_BRUTE);
+        this.addGoldenArmorTable(EntityTypeIds.ZOMBIFIED_PIGLIN);
+        this.addRaiderArmorTable(EntityTypeIds.VINDICATOR);
+        this.addRaiderArmorTable(EntityTypeIds.EVOKER);
+        this.addRaiderArmorTable(EntityTypeIds.ILLUSIONER);
+        this.addRaiderArmorTable(EntityTypeIds.PILLAGER);
     }
 
-    private void addNaturalArmorTable(EntityType<?> entityType) {
+    private void addNaturalArmorTable(ResourceKey<EntityType<?>> entityType) {
         this.add(ModLootTables.createEntityEquipmentTable(entityType),
                 LootTable.lootTable()
                         .withPool(LootPool.lootPool()
@@ -103,7 +105,7 @@ public class ModEquipmentLootProvider extends AbstractLootProvider.Simple {
                                         .when(EffectiveDifficultyCheck.randomChance(0.15F)))));
     }
 
-    private void addGoldenArmorTable(EntityType<?> entityType) {
+    private void addGoldenArmorTable(ResourceKey<EntityType<?>> entityType) {
         this.add(ModLootTables.createEntityEquipmentTable(entityType),
                 LootTable.lootTable()
                         .withPool(LootPool.lootPool()
@@ -115,7 +117,7 @@ public class ModEquipmentLootProvider extends AbstractLootProvider.Simple {
                                                                 .setIsBaby(false)))))));
     }
 
-    private void addRaiderArmorTable(EntityType<?> entityType) {
+    private void addRaiderArmorTable(ResourceKey<EntityType<?>> entityType) {
         this.add(ModLootTables.createEntityEquipmentTable(entityType),
                 LootTable.lootTable()
                         .withPool(LootPool.lootPool()

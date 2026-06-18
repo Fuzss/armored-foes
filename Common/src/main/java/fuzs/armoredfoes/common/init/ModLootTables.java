@@ -1,6 +1,5 @@
 package fuzs.armoredfoes.common.init;
 
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.entity.EntityType;
@@ -28,8 +27,7 @@ public class ModLootTables {
         // NO-OP
     }
 
-    public static ResourceKey<LootTable> createEntityEquipmentTable(EntityType<?> entityType) {
-        return ResourceKey.create(Registries.LOOT_TABLE,
-                BuiltInRegistries.ENTITY_TYPE.getKey(entityType).withPrefix("equipment/entities/"));
+    public static ResourceKey<LootTable> createEntityEquipmentTable(ResourceKey<EntityType<?>> entityType) {
+        return ResourceKey.create(Registries.LOOT_TABLE, entityType.identifier().withPrefix("equipment/entities/"));
     }
 }

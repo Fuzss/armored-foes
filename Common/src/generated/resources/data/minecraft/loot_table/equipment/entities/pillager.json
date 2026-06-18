@@ -2,7 +2,6 @@
   "type": "minecraft:equipment",
   "pools": [
     {
-      "bonus_rolls": 0.0,
       "entries": [
         {
           "type": "minecraft:alternatives",
@@ -45,6 +44,9 @@
                 {
                   "chance": 0.15,
                   "condition": "minecraft:random_chance"
+                },
+                {
+                  "condition": "armoredfoes:raid_check"
                 }
               ],
               "value": "armoredfoes:equipment/raider_armor"

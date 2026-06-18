@@ -13,7 +13,7 @@ import net.minecraft.client.renderer.entity.layers.RenderLayer;
 import net.minecraft.client.renderer.entity.state.LivingEntityRenderState;
 import net.minecraft.client.resources.model.EquipmentClientInfo.LayerType;
 import net.minecraft.core.component.DataComponents;
-import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.EntityTypes;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.equipment.Equippable;
@@ -87,6 +87,6 @@ public class LivingArmorLayer<S extends LivingEntityRenderState, M extends Entit
     }
 
     private boolean useBabyLayer(S state) {
-        return state.isBaby && state.entityType != EntityType.ARMOR_STAND;
+        return state.isBaby && state.entityType != EntityTypes.ARMOR_STAND;
     }
 }
