@@ -5,11 +5,17 @@
     "26.1.x": "maintained",
     "26.2.x": "primary"
   },
-  "properties": {
-    "distributions.curseforge.id": "1369926",
-    "distributions.curseforge.slug": "armored-foes",
-    "distributions.github.slug": "armored-foes",
-    "distributions.modrinth.id": "ahTPKYtE",
-    "distributions.modrinth.slug": "armored-foes"
+  "distributions": {
+    "curseforge": {
+      "id": "1369926",
+      "slug": "armored-foes"
+    },
+    "github": {
+      "slug": "armored-foes"
+    },
+    "modrinth": {
+      "id": "ahTPKYtE",
+      "slug": "armored-foes"
+    }
   }
 }
