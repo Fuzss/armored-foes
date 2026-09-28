@@ -4,10 +4,10 @@ import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import fuzs.armoredfoes.common.world.level.storage.loot.predicates.EffectiveDifficultyCheck;
 import net.minecraft.core.Holder;
-import net.minecraft.core.HolderLookup;
+import net.minecraft.core.HolderGetter;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.RegistryFixedCodec;
+import net.minecraft.core.registries.codec.RegistryFixedCodec;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.item.ItemStack;
@@ -18,7 +18,7 @@ import net.minecraft.world.level.storage.loot.functions.LootItemConditionalFunct
 import net.minecraft.world.level.storage.loot.functions.LootItemFunction;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 
-import java.util.List;
+import java.util.Optional;
 
 /**
  * Apply enchantments from an {@link EnchantmentProvider}.
@@ -35,8 +35,8 @@ public class ApplyEnchantmentProviderFunction extends LootItemConditionalFunctio
 
     private final Holder<EnchantmentProvider> provider;
 
-    public ApplyEnchantmentProviderFunction(List<LootItemCondition> predicates, Holder<EnchantmentProvider> provider) {
-        super(predicates);
+    public ApplyEnchantmentProviderFunction(Optional<Holder<LootItemCondition>> condition, Holder<EnchantmentProvider> provider) {
+        super(condition);
         this.provider = provider;
     }
 
@@ -47,19 +47,21 @@ public class ApplyEnchantmentProviderFunction extends LootItemConditionalFunctio
 
     @Override
     protected ItemStack run(ItemStack itemStack, LootContext context) {
-        RegistryAccess registryAccess = context.getLevel().registryAccess();
-        DifficultyInstance difficulty = EffectiveDifficultyCheck.getDifficulty(context);
-        EnchantmentHelper.enchantItemFromProvider(itemStack,
-                registryAccess,
-                this.provider.unwrapKey().orElseThrow(),
-                difficulty,
-                context.getRandom());
+        DifficultyInstance difficulty = EffectiveDifficultyCheck.getCurrentDifficultyAt(context);
+        if (difficulty != null) {
+            RegistryAccess registryAccess = context.getLevel().registryAccess();
+            EnchantmentHelper.enchantItemFromProvider(itemStack,
+                    registryAccess,
+                    this.provider.unwrapKey().orElseThrow(),
+                    difficulty,
+                    context.getRandom());
+        }
+
         return itemStack;
     }
 
-    public static ApplyEnchantmentProviderFunction.Builder fromProvider(HolderLookup.Provider registries, ResourceKey<EnchantmentProvider> resourceKey) {
-        return new ApplyEnchantmentProviderFunction.Builder(registries.lookupOrThrow(Registries.ENCHANTMENT_PROVIDER)
-                .getOrThrow(resourceKey));
+    public static ApplyEnchantmentProviderFunction.Builder fromProvider(HolderGetter<EnchantmentProvider> enchantmentProviders, ResourceKey<EnchantmentProvider> resourceKey) {
+        return new ApplyEnchantmentProviderFunction.Builder(enchantmentProviders.getOrThrow(resourceKey));
     }
 
     public static class Builder extends LootItemConditionalFunction.Builder<ApplyEnchantmentProviderFunction.Builder> {
@@ -76,7 +78,7 @@ public class ApplyEnchantmentProviderFunction extends LootItemConditionalFunctio
 
         @Override
         public LootItemFunction build() {
-            return new ApplyEnchantmentProviderFunction(this.getConditions(), this.provider);
+            return new ApplyEnchantmentProviderFunction(this.getCondition(), this.provider);
         }
     }
 }

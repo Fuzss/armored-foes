@@ -3,7 +3,7 @@ package fuzs.armoredfoes.common.handler;
 import fuzs.armoredfoes.common.ArmoredFoes;
 import fuzs.armoredfoes.common.config.ServerConfig;
 import fuzs.armoredfoes.common.init.ModLootTables;
-import fuzs.armoredfoes.common.init.ModRegistry;
+import fuzs.armoredfoes.common.init.ModTags;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.*;
@@ -21,7 +21,7 @@ public class SpawnEquipmentHandler {
             // In that case, though, the spawn reason will be null, so we can filter that out like so.
             if (entitySpawnReason != null) {
                 ResourceKey<EntityType<?>> entityType = entity.typeHolder().unwrapKey().orElseThrow();
-                ResourceKey<LootTable> resourceKey = ModLootTables.createEntityEquipmentTable(entityType);
+                ResourceKey<LootTable> resourceKey = ModLootTables.registerEquipment(entityType);
                 LootTable lootTable = serverLevel.getServer().reloadableRegistries().getLootTable(resourceKey);
                 if (lootTable != LootTable.EMPTY && prepareEquipmentSlots(mob)) {
                     mob.equip(resourceKey, Collections.emptyMap());
@@ -32,7 +32,7 @@ public class SpawnEquipmentHandler {
 
     private static boolean prepareEquipmentSlots(Mob mob) {
         // Mobs in this tag have their equipment cleared before trying to apply equipment from the loot table.
-        if (mob.is(ModRegistry.DISCARDS_ORIGINAL_EQUIPMENT_ENTITY_TAG)) {
+        if (mob.is(ModTags.EntityTypes.DISCARDS_ORIGINAL_EQUIPMENT_ENTITY_TAG)) {
             for (EquipmentSlot equipmentSlot : ArmoredFoes.CONFIG.get(ServerConfig.class).clearedEquipmentSlots) {
                 mob.setItemSlot(equipmentSlot, ItemStack.EMPTY);
             }
