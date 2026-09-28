@@ -7,8 +7,8 @@
           "type": "armoredfoes:selection",
           "base": {
             "type": "minecraft:uniform",
-            "max": 2.0,
-            "min": 0.0
+            "max": 2,
+            "min": 0
           },
           "children": [
             {
@@ -39,7 +39,7 @@
           "per_value_above_first": 0.1087
         }
       ],
-      "rolls": 1.0
+      "rolls": 1
     }
   ],
   "random_sequence": "armoredfoes:equipment/natural_armor"

@@ -8,18 +8,14 @@
           "children": [
             {
               "type": "minecraft:item",
-              "functions": [
-                {
-                  "conditions": [
-                    {
-                      "chance": 0.5,
-                      "condition": "armoredfoes:effective_difficulty_check"
-                    }
-                  ],
-                  "function": "armoredfoes:apply_enchantment_provider",
-                  "provider": "minecraft:mob_spawn_equipment"
-                }
-              ],
+              "modifier": {
+                "type": "armoredfoes:apply_enchantment_provider",
+                "condition": {
+                  "type": "armoredfoes:effective_difficulty_check",
+                  "chance": 0.5
+                },
+                "provider": "minecraft:mob_spawn_equipment"
+              },
               "name": "minecraft:diamond_helmet"
             },
             {
@@ -27,57 +23,55 @@
               "children": [
                 {
                   "type": "minecraft:item",
-                  "conditions": [
-                    {
-                      "chance": 0.9,
-                      "condition": "minecraft:random_chance"
+                  "condition": {
+                    "type": "minecraft:all_of",
+                    "terms": [
+                      {
+                        "type": "minecraft:random_chance",
+                        "chance": 0.9
+                      },
+                      {
+                        "type": "armoredfoes:difficulty_check",
+                        "difficulty": "hard"
+                      }
+                    ]
+                  },
+                  "modifier": {
+                    "type": "armoredfoes:apply_enchantment_provider",
+                    "condition": {
+                      "type": "armoredfoes:effective_difficulty_check",
+                      "chance": 0.5
                     },
-                    {
-                      "condition": "armoredfoes:difficulty_check",
-                      "difficulty": "hard"
-                    }
-                  ],
-                  "functions": [
-                    {
-                      "conditions": [
-                        {
-                          "chance": 0.5,
-                          "condition": "armoredfoes:effective_difficulty_check"
-                        }
-                      ],
-                      "function": "armoredfoes:apply_enchantment_provider",
-                      "provider": "minecraft:mob_spawn_equipment"
-                    }
-                  ],
+                    "provider": "minecraft:mob_spawn_equipment"
+                  },
                   "name": "minecraft:diamond_chestplate"
                 },
                 {
                   "type": "minecraft:item",
-                  "conditions": [
-                    {
-                      "chance": 0.75,
-                      "condition": "minecraft:random_chance"
-                    },
-                    {
-                      "condition": "minecraft:inverted",
-                      "term": {
-                        "condition": "armoredfoes:difficulty_check",
-                        "difficulty": "hard"
-                      }
-                    }
-                  ],
-                  "functions": [
-                    {
-                      "conditions": [
-                        {
-                          "chance": 0.5,
-                          "condition": "armoredfoes:effective_difficulty_check"
+                  "condition": {
+                    "type": "minecraft:all_of",
+                    "terms": [
+                      {
+                        "type": "minecraft:random_chance",
+                        "chance": 0.75
+                      },
+                      {
+                        "type": "minecraft:inverted",
+                        "term": {
+                          "type": "armoredfoes:difficulty_check",
+                          "difficulty": "hard"
                         }
-                      ],
-                      "function": "armoredfoes:apply_enchantment_provider",
-                      "provider": "minecraft:mob_spawn_equipment"
-                    }
-                  ],
+                      }
+                    ]
+                  },
+                  "modifier": {
+                    "type": "armoredfoes:apply_enchantment_provider",
+                    "condition": {
+                      "type": "armoredfoes:effective_difficulty_check",
+                      "chance": 0.5
+                    },
+                    "provider": "minecraft:mob_spawn_equipment"
+                  },
                   "name": "minecraft:diamond_chestplate"
                 }
               ]
@@ -87,57 +81,55 @@
               "children": [
                 {
                   "type": "minecraft:item",
-                  "conditions": [
-                    {
-                      "chance": 0.9,
-                      "condition": "minecraft:random_chance"
+                  "condition": {
+                    "type": "minecraft:all_of",
+                    "terms": [
+                      {
+                        "type": "minecraft:random_chance",
+                        "chance": 0.9
+                      },
+                      {
+                        "type": "armoredfoes:difficulty_check",
+                        "difficulty": "hard"
+                      }
+                    ]
+                  },
+                  "modifier": {
+                    "type": "armoredfoes:apply_enchantment_provider",
+                    "condition": {
+                      "type": "armoredfoes:effective_difficulty_check",
+                      "chance": 0.5
                     },
-                    {
-                      "condition": "armoredfoes:difficulty_check",
-                      "difficulty": "hard"
-                    }
-                  ],
-                  "functions": [
-                    {
-                      "conditions": [
-                        {
-                          "chance": 0.5,
-                          "condition": "armoredfoes:effective_difficulty_check"
-                        }
-                      ],
-                      "function": "armoredfoes:apply_enchantment_provider",
-                      "provider": "minecraft:mob_spawn_equipment"
-                    }
-                  ],
+                    "provider": "minecraft:mob_spawn_equipment"
+                  },
                   "name": "minecraft:diamond_leggings"
                 },
                 {
                   "type": "minecraft:item",
-                  "conditions": [
-                    {
-                      "chance": 0.75,
-                      "condition": "minecraft:random_chance"
-                    },
-                    {
-                      "condition": "minecraft:inverted",
-                      "term": {
-                        "condition": "armoredfoes:difficulty_check",
-                        "difficulty": "hard"
-                      }
-                    }
-                  ],
-                  "functions": [
-                    {
-                      "conditions": [
-                        {
-                          "chance": 0.5,
-                          "condition": "armoredfoes:effective_difficulty_check"
+                  "condition": {
+                    "type": "minecraft:all_of",
+                    "terms": [
+                      {
+                        "type": "minecraft:random_chance",
+                        "chance": 0.75
+                      },
+                      {
+                        "type": "minecraft:inverted",
+                        "term": {
+                          "type": "armoredfoes:difficulty_check",
+                          "difficulty": "hard"
                         }
-                      ],
-                      "function": "armoredfoes:apply_enchantment_provider",
-                      "provider": "minecraft:mob_spawn_equipment"
-                    }
-                  ],
+                      }
+                    ]
+                  },
+                  "modifier": {
+                    "type": "armoredfoes:apply_enchantment_provider",
+                    "condition": {
+                      "type": "armoredfoes:effective_difficulty_check",
+                      "chance": 0.5
+                    },
+                    "provider": "minecraft:mob_spawn_equipment"
+                  },
                   "name": "minecraft:diamond_leggings"
                 }
               ]
@@ -147,57 +139,55 @@
               "children": [
                 {
                   "type": "minecraft:item",
-                  "conditions": [
-                    {
-                      "chance": 0.9,
-                      "condition": "minecraft:random_chance"
+                  "condition": {
+                    "type": "minecraft:all_of",
+                    "terms": [
+                      {
+                        "type": "minecraft:random_chance",
+                        "chance": 0.9
+                      },
+                      {
+                        "type": "armoredfoes:difficulty_check",
+                        "difficulty": "hard"
+                      }
+                    ]
+                  },
+                  "modifier": {
+                    "type": "armoredfoes:apply_enchantment_provider",
+                    "condition": {
+                      "type": "armoredfoes:effective_difficulty_check",
+                      "chance": 0.5
                     },
-                    {
-                      "condition": "armoredfoes:difficulty_check",
-                      "difficulty": "hard"
-                    }
-                  ],
-                  "functions": [
-                    {
-                      "conditions": [
-                        {
-                          "chance": 0.5,
-                          "condition": "armoredfoes:effective_difficulty_check"
-                        }
-                      ],
-                      "function": "armoredfoes:apply_enchantment_provider",
-                      "provider": "minecraft:mob_spawn_equipment"
-                    }
-                  ],
+                    "provider": "minecraft:mob_spawn_equipment"
+                  },
                   "name": "minecraft:diamond_boots"
                 },
                 {
                   "type": "minecraft:item",
-                  "conditions": [
-                    {
-                      "chance": 0.75,
-                      "condition": "minecraft:random_chance"
-                    },
-                    {
-                      "condition": "minecraft:inverted",
-                      "term": {
-                        "condition": "armoredfoes:difficulty_check",
-                        "difficulty": "hard"
-                      }
-                    }
-                  ],
-                  "functions": [
-                    {
-                      "conditions": [
-                        {
-                          "chance": 0.5,
-                          "condition": "armoredfoes:effective_difficulty_check"
+                  "condition": {
+                    "type": "minecraft:all_of",
+                    "terms": [
+                      {
+                        "type": "minecraft:random_chance",
+                        "chance": 0.75
+                      },
+                      {
+                        "type": "minecraft:inverted",
+                        "term": {
+                          "type": "armoredfoes:difficulty_check",
+                          "difficulty": "hard"
                         }
-                      ],
-                      "function": "armoredfoes:apply_enchantment_provider",
-                      "provider": "minecraft:mob_spawn_equipment"
-                    }
-                  ],
+                      }
+                    ]
+                  },
+                  "modifier": {
+                    "type": "armoredfoes:apply_enchantment_provider",
+                    "condition": {
+                      "type": "armoredfoes:effective_difficulty_check",
+                      "chance": 0.5
+                    },
+                    "provider": "minecraft:mob_spawn_equipment"
+                  },
                   "name": "minecraft:diamond_boots"
                 }
               ]
@@ -205,7 +195,7 @@
           ]
         }
       ],
-      "rolls": 1.0
+      "rolls": 1
     }
   ],
   "random_sequence": "armoredfoes:equipment/diamond_armor"

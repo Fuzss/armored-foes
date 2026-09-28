@@ -5,16 +5,14 @@
       "entries": [
         {
           "type": "minecraft:loot_table",
-          "conditions": [
-            {
-              "chance": 0.15,
-              "condition": "armoredfoes:effective_difficulty_check"
-            }
-          ],
+          "condition": {
+            "type": "armoredfoes:effective_difficulty_check",
+            "chance": 0.15
+          },
           "value": "armoredfoes:equipment/natural_armor"
         }
       ],
-      "rolls": 1.0
+      "rolls": 1
     }
   ],
   "random_sequence": "minecraft:equipment/entities/drowned"

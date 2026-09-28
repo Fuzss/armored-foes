@@ -8,53 +8,62 @@
           "children": [
             {
               "type": "minecraft:loot_table",
-              "conditions": [
-                {
-                  "chance": 0.65,
-                  "condition": "minecraft:random_chance"
-                },
-                {
-                  "condition": "armoredfoes:raid_check",
-                  "waves": {
-                    "min": 6.0
+              "condition": {
+                "type": "minecraft:all_of",
+                "terms": [
+                  {
+                    "type": "minecraft:random_chance",
+                    "chance": 0.65
+                  },
+                  {
+                    "type": "armoredfoes:raid_check",
+                    "waves": {
+                      "min": 6
+                    }
                   }
-                }
-              ],
+                ]
+              },
               "value": "armoredfoes:equipment/raider_armor"
             },
             {
               "type": "minecraft:loot_table",
-              "conditions": [
-                {
-                  "chance": 0.35,
-                  "condition": "minecraft:random_chance"
-                },
-                {
-                  "condition": "armoredfoes:raid_check",
-                  "waves": {
-                    "min": 3.0
+              "condition": {
+                "type": "minecraft:all_of",
+                "terms": [
+                  {
+                    "type": "minecraft:random_chance",
+                    "chance": 0.35
+                  },
+                  {
+                    "type": "armoredfoes:raid_check",
+                    "waves": {
+                      "min": 3
+                    }
                   }
-                }
-              ],
+                ]
+              },
               "value": "armoredfoes:equipment/raider_armor"
             },
             {
               "type": "minecraft:loot_table",
-              "conditions": [
-                {
-                  "chance": 0.15,
-                  "condition": "minecraft:random_chance"
-                },
-                {
-                  "condition": "armoredfoes:raid_check"
-                }
-              ],
+              "condition": {
+                "type": "minecraft:all_of",
+                "terms": [
+                  {
+                    "type": "minecraft:random_chance",
+                    "chance": 0.15
+                  },
+                  {
+                    "type": "armoredfoes:raid_check"
+                  }
+                ]
+              },
               "value": "armoredfoes:equipment/raider_armor"
             }
           ]
         }
       ],
-      "rolls": 1.0
+      "rolls": 1
     }
   ],
   "random_sequence": "minecraft:equipment/entities/pillager"
